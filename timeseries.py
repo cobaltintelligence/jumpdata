@@ -52,6 +52,25 @@ df = DataFrame(
 	index = series.index, 
 	columns = ["load", "center_of_pressure"])
 
+
+df['var'] = df['load'].rolling(window=100).var()
+df['avload'] = df['load'].rolling(window=1500, win_type="triang").mean()
+
+
+# 
+data = values
+scaler = MinMaxScaler(feature_range=(-1, 1))
+
+scaler = scaler.fit(data)
+print('Min: %f, Max: %f' % (scaler.data_min_[0], scaler.data_max_[0]))
+print('Min: %f, Max: %f' % (scaler.data_min_[1], scaler.data_max_[1]))
+
+
+normalized = scaler.transform(values)
+if __DEBUG2__:
+	for i in range(5):
+		print(normalized[i])
+
 # for i in range(5):
 # 	print(inversed[i])
 
