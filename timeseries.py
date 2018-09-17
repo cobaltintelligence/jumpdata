@@ -5,6 +5,8 @@ from sklearn.preprocessing import MinMaxScaler
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
+from normalize import normalize
+
 __DEBUG2__ = False
 
 series = pandas.read_csv('data/jump180905.csv', header=0, index_col=0)
@@ -64,6 +66,8 @@ scaler = MinMaxScaler(feature_range=(-1, 1))
 scaler = scaler.fit(data)
 print('Min: %f, Max: %f' % (scaler.data_min_[0], scaler.data_max_[0]))
 print('Min: %f, Max: %f' % (scaler.data_min_[1], scaler.data_max_[1]))
+
+
 
 
 normalized = scaler.transform(values)
